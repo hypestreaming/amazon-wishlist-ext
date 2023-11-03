@@ -1,13 +1,15 @@
 <div class="panel-container">
 
 	<div class="theme-title">
-		<img [src]="logo" style="width: 2.25em; height: 2.25em; border-radius: 100%; margin-right: 4px;" *ngIf="logo" alt/>
-		<ng-container *ngIf="title != ''">
-			{{ title }}
-		</ng-container>
-		<ng-container *ngIf="title == ''">
-			My Wishlist
-		</ng-container>
+		<a [href]="wishlistUrl | amazonLinkTagger" target="_blank">
+			<img [src]="logo" style="width: 2.25em; height: 2.25em; border-radius: 100%; margin-right: 4px;" *ngIf="logo" alt/>
+			<ng-container *ngIf="title != ''">
+				{{ title }}
+			</ng-container>
+			<ng-container *ngIf="title == ''">
+				My Wishlist
+			</ng-container>
+		</a>
 	</div>
 
 	<div style="text-align: center; color: white; margin-bottom: 12px;"

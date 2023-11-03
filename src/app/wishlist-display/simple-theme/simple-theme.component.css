@@ -48,3 +48,8 @@ li.item:hover {
 	font-size: 20px;
 	line-height: 24px;
 }
+
+.theme-title a, .theme-title a:hover, .theme-title a:visited {
+	color: white;
+	text-decoration: none;
+}
