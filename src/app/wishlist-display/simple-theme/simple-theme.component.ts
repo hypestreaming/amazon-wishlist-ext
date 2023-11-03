@@ -2,14 +2,13 @@ import {Component, Input, NgZone, OnChanges, OnInit, SimpleChanges} from '@angul
 import {LoggerService} from '../../services/logger.service';
 import {WishlistItems} from '../../wishlist-user-configuration';
 import {GoogleAnalyticsService} from '../../services/google-analytics.service';
-import {environment} from '../../../environments/environment';
 
 @Component({
 	selector: 'app-simple-theme',
 	templateUrl: './simple-theme.component.html',
 	styleUrls: ['../../panel-extension/panel-extension.component.css', './simple-theme.component.css']
 })
-export class SimpleThemeComponent implements OnInit, OnChanges {
+export class SimpleThemeComponent {
 
 	@Input() loaded = false;
 
@@ -20,12 +19,6 @@ export class SimpleThemeComponent implements OnInit, OnChanges {
 	@Input() wishlistUrl = null;
 
 	constructor(private logger: LoggerService, private ga: GoogleAnalyticsService) {
-	}
-
-	ngOnChanges(changes: SimpleChanges) {
-	}
-
-	ngOnInit() {
 	}
 
 	onItemClicked(event: any): boolean {
