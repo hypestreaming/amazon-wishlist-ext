@@ -1,0 +1,28 @@
+#!/bin/sh
+
+VERSION=$( cat ./src/environments/extension.ts | grep extensionVersion | cut -d"'" -f2 | tr -s "." "-" )
+
+node --version | grep v12.16.2 >/dev/null
+if [ $? -ne 0 ]; then
+	echo Must have node 12.16.2 installed
+	exit 1
+fi
+
+echo Creating distribution for twitch
+DISTFILE="my-wishlist-$VERSION.zip"
+rm -f $DISTFILE
+./node_modules/@angular/cli/bin/ng build --prod
+(cd dist/wishlist; zip -rp9 ../../$DISTFILE .)
+echo Upload this file to dev.twitch.tv: $DISTFILE
+
+echo Preparing distribution for twitch code review
+ZIPFILE="my-wishlist-$VERSION-src.zip"
+echo Zipping up $ZIPFILE
+rm -f $ZIPFILE
+zip -r9pq $ZIPFILE src *.json
+echo Uploading to s3
+aws s3 cp --acl=public-read $ZIPFILE s3://twitch-code-review/ 
+echo When sending for code review, use this url:
+URL="https://s3.amazonaws.com/twitch-code-review/$ZIPFILE"
+echo $URL
+echo ""

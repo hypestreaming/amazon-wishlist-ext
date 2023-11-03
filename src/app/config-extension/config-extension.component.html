@@ -1,0 +1,147 @@
+<div class="config-container" style="width: 100%; min-width: 800px; margin-top: 0; background-color: #17171A;">
+
+	<div style="font-family: 'Droid Sans', sans-serif; font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 16px; height: 64px; line-height: 64px; background-color: #FEBD68; color: black;">
+		<img src="assets/blue-rect.png" alt style="pointer-events: none; transform: scale(0.5); margin-top: -1.5em;"/>
+		My Amazon Wishlist
+	</div>
+
+	<div style="width: 600px; float: left;">
+		<div style="color: white;">
+
+			<h4 class="heading-2">Welcome! 🎉</h4>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+				<p>Your viewers and subscribers are able to gift you anything from your Amazon Wishlist! 🤯</p>
+				<p> Get your most desired items bought by your fans! 💰🎁</p>
+			</div>
+
+			<h4 class="heading-2">Getting Started 🚀</h4>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+
+				<div style="float: left; width: 30%">
+					Your Amazon Wishlist Link:
+				</div>
+
+				<div style="float: left; width: 70%;">
+					<input type="text" class="w-input"
+						maxlength="256"
+						name="name"
+						data-name="Name"
+						placeholder="URL looks like: https://www.amazon.com/registry/wishlist/1DZV0REXU9NRA/"
+						id="name"
+						required=""
+						[value]="wishlistUrl"
+						(change)="onTextChanged($event)"
+						style="border-radius: 1em; background: transparent; color: white;"
+					/>
+				</div>
+
+				<br style="clear: both;"/>
+
+				<app-action-button text="Save" (click)="onUpdateClicked();"></app-action-button>
+
+				<img *ngIf="show_loader" src="assets/loading.gif" style="width: 36px; height: 36px;"  alt />
+
+				<div class="text-block-3" *ngIf="status_text != ''">
+					{{ status_text }}
+				</div>
+			</div>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+				<h4>How to create Amazon Wishlist URLs?</h4>
+
+				<p>
+					Click on Watch Demo how to create a public Amazon Wishlist for the items you desire!
+				</p>
+
+				<ng-container *ngIf="!videoTutorialVisible">
+					<app-action-button text="Watch Demo" (click)="onWatchDemoClicked();"></app-action-button>
+				</ng-container>
+
+				<div *ngIf="videoTutorialVisible">
+					<video src="assets/my-wishlist-tutorial.mp4" controls autoplay muted style="width: 100%;"></video>
+				</div>
+			</div>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+				<h4>Activate extension as a Panel</h4>
+				<p>
+					Visit “My Extensions” page and activate My Instagram!
+				</p>
+				<div style="text-align: right;">
+					<a href="https://www.twitch.tv/dashboard/extensions/manage" target="_blank">
+						<span style="background-color: #FEBD68; height: 1em; padding: 6px 16px; border-radius: 100px; color: black;">
+							My Extensions
+						</span>
+					</a>
+				</div>
+			</div>
+
+			<h4 class="heading-2">Customization 🛠️</h4>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+
+				<div style="float: left; width: 30%;">
+					Add custom title:
+				</div>
+
+				<div style="float: left; width: 70%;">
+					<input type="text" class="w-input"
+						maxlength="256"
+						placeholder="Enter title or leave empty to remove title"
+						id="title"
+						required=""
+						style="border-radius: 1em; background: transparent; color: white;"
+						[value]="title"
+						(keyup)="onTitleChanged($event)"
+						(change)="onTitleChanged($event)"
+					/>
+					<p>
+						Enter a custom title you want to display on your feed
+					</p>
+				</div>
+				<br style="clear: both;"/>
+
+				<app-action-button text="Update" (click)="onUpdateClicked();"></app-action-button>
+
+				<img *ngIf="show_loader" src="assets/loading.gif" alt style="width: 36px; height: 36px;" />
+			</div>
+
+			<h4 class="heading-2">More extensions from Goose Wrappers 🎁</h4>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+				<div style="float: left;">
+					<a href="https://dashboard.twitch.tv/extensions/a0nm5zyyzi0tgb805iaflj1yd2c5x5" target="_blank">
+						<img src="assets/my-instagram-icon.png" alt style="width: 3em; height: 3em; margin-right: 1em; "/>
+					</a>
+				</div>
+
+				<div style="float: left;">
+					<a href="https://dashboard.twitch.tv/extensions/a0nm5zyyzi0tgb805iaflj1yd2c5x5" target="_blank" style="color: white;">
+						<h4>My Instagram Feed</h4>
+					</a>
+					<p>
+						Show ANY Instagram feed  in your stream or channel page!
+					</p>
+				</div>
+
+				<br style="clear: both;" />
+			</div>
+
+			<h4 class="heading-2">Contact us 📩</h4>
+
+			<div class="text-block-4-round" style="margin-bottom: 1em;">
+				If you have any feedback, questions, or issues:  Do not hesitate to  out to our lovely support team at
+				<a href="mailto:support@goosewrappers.dev" target="_blank">support@goosewrappers.dev</a>! ❤️
+			</div>
+		</div>
+	</div>
+	<div style="float: left; width: 320px; margin-left: 2em;">
+		<h4 class="heading-2" style="color: white;">Preview</h4>
+		<div style="height: 500px; overflow-y: scroll; overflow-x: hidden; border: 1px solid #333;">
+			<app-wishlist-display [loaded]="true" [items]="items" [title]="title" [logo]="userImage" [wishlistUrl]="wishlistUrl"></app-wishlist-display>
+		</div>
+	</div>
+	<br style="clear: both;"/>
+</div>

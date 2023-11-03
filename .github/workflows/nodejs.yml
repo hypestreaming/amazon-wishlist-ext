@@ -1,0 +1,30 @@
+name: My Wishlist
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - run: sudo npm install -g typescript @angular/cli serverless
+    - run: (cd server; npm install --save-dev)
+    - run: (cd server; tsc && npm test)
+    - run: (cd ext; npm install --save-dev)
+    - run: (cd ext; ng lint)
+    - run: (cd ext; ng build --prod)
+    - run: (cd server; sh deploy)

@@ -1,0 +1,43 @@
+<div class="panel-container">
+
+	<div class="theme-title">
+		<img [src]="logo" style="width: 2.25em; height: 2.25em; border-radius: 100%; margin-right: 4px;" *ngIf="logo" alt/>
+		<ng-container *ngIf="title != ''">
+			{{ title }}
+		</ng-container>
+		<ng-container *ngIf="title == ''">
+			My Wishlist
+		</ng-container>
+	</div>
+
+	<div style="text-align: center; color: white; margin-bottom: 12px;"
+		*ngIf="loaded && items.length === 0">
+		No items at the moment
+	</div>
+
+	<ul style="width: 100%; margin: 0; padding: 0; list-style: none;">
+		<li *ngFor="let item of items" style="height: 4em; overflow: hidden;">
+			<a [href]="item.link | amazonLinkTagger" target="_blank" rel="noopener" style="text-decoration: none; color: #333;" (click)="onItemClicked($event)">
+				<div style="background-color: #292931; color: white; width: 100%; border-radius: 1em; padding: 0.5em;">
+					<div style="width: 32px; float: left;">
+						<img [src]="item.image" alt style="width: 32px; height: 32px; border-radius: 100%; max-width: 32px;"/>
+					</div>
+					<div style="white-space: nowrap; text-overflow: ellipsis; width: calc(100vw - 5em - 32px - 5em); overflow: hidden; padding-left: 0.75em; float: left; padding-top: 0.5em;">
+						{{ item.title }}
+					</div>
+					<div style="float: right; padding-top: 0.5em; width: 5em;">
+						<span style="background-color: #863eff; font-size: 0.75em; color: white; border-radius: 12px; padding: 4px 12px; white-space: nowrap;">
+							Buy Gift
+						</span>
+					</div>
+
+					<br style="clear: both;"/>
+				</div>
+			</a>
+		</li>
+	</ul>
+
+	<div class="see-entire-wishlist" *ngIf="items.length > 0 && wishlistUrl">
+		<a [href]="wishlistUrl | amazonLinkTagger" target="_blank">See my entire wishlist</a>
+	</div>
+</div>

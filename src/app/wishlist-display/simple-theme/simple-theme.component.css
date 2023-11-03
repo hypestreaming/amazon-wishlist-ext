@@ -1,0 +1,50 @@
+li.item .text {
+	width: 100%;
+	height: 38px;
+	line-height: 19px;
+}
+
+li.item {
+	transition: all 200ms ease;
+}
+
+li.item:hover {
+	-webkit-transform: scale(1.04);
+	-ms-transform: scale(1.04);
+	transform: scale(1.04);
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+.panel-container {
+	width: 100vw;
+	height: 100vh;
+	padding: 12px;
+	background: #181818;
+	overflow: auto;
+	font-family: VarelaRound, sans-serif;
+}
+
+.text-container {
+	height: 64px;
+	float: left;
+	width: 212px;
+	padding: 12px;
+}
+
+.see-entire-wishlist {
+	text-align: center;
+	color: white;
+	margin-bottom: 12px;
+}
+
+.see-entire-wishlist a, .see-entire-wishlist a:hover {
+	color: white;
+}
+
+.theme-title {
+	color: white;
+	margin-bottom: 0.75em;
+	font-size: 20px;
+	line-height: 24px;
+}

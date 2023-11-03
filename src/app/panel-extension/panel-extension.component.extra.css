@@ -1,0 +1,16 @@
+.container {
+	position: relative;
+	overflow: hidden;
+	margin-top: 0;
+	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+	color: #333;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: left;
+	padding: 0;
+}
+
+::ng-deep body {
+	margin: 0;
+	overflow: hidden;
+}
