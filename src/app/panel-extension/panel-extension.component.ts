@@ -1,10 +1,9 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoggerService} from '../services/logger.service';
 import {GoogleAnalyticsService} from '../services/google-analytics.service';
-import {TwitchAuthorization, TwitchWindow} from 'hype-twitch-types';
 import {WishlistItems} from '../wishlist-user-configuration';
 import {ConfigurationParserService} from '../services/configuration-parser.service';
+import {TwitchAuthorization, TwitchWindow} from "twitch-typings";
 
 @Component({
 	selector: 'app-panel-extension',

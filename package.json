@@ -25,7 +25,7 @@
     "pako": "^1.0.8",
     "codelyzer": "^5.1.0",
     "core-js": "^2.4.1",
-    "hype-twitch-types": "git+https://704c7d6d228a3b810c7ff37221ba2ae0da185499:x-oauth-basic@github.com/gmegidish/hype-twitch-types.git",
+    "twitch-typings": "github:hypestreaming/twitch-typings",
     "rxjs": "^6.5.2",
     "zone.js": "^0.9.1"
   },

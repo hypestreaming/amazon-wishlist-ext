@@ -3,10 +3,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {LoggerService} from '../services/logger.service';
 import {GoogleAnalyticsService} from '../services/google-analytics.service';
-import {TwitchAuthorization, TwitchWindow} from 'hype-twitch-types';
 import {WishlistItems, WishlistUserConfiguration} from '../wishlist-user-configuration';
 import {ConfigurationParserService} from '../services/configuration-parser.service';
 import {TwitchService} from '../services/twitch.service';
+import {TwitchAuthorization, TwitchWindow} from "twitch-typings";
 
 interface FetchResponse {
 	status: string;
