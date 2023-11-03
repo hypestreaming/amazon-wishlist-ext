@@ -132,15 +132,17 @@
 			<h4 class="heading-2">Contact us 📩</h4>
 
 			<div class="text-block-4-round" style="margin-bottom: 1em;">
-				If you have any feedback, questions, or issues:  Do not hesitate to  out to our lovely support team at
+				If you have any feedback, questions, or issues: Do not hesitate to  out to our lovely support team at
 				<a href="mailto:support@goosewrappers.dev" target="_blank">support@goosewrappers.dev</a>! ❤️
 			</div>
 		</div>
 	</div>
 	<div style="float: left; width: 320px; margin-left: 2em;">
 		<h4 class="heading-2" style="color: white;">Preview</h4>
-		<div style="height: 500px; overflow-y: scroll; overflow-x: hidden; border: 1px solid #333;">
+		<div style="overflow: hidden;">
+		<div style="height: 500px; width: 320px; overflow: auto; border: 1px solid #333;">
 			<app-wishlist-display [loaded]="true" [items]="items" [title]="title" [logo]="userImage" [wishlistUrl]="wishlistUrl"></app-wishlist-display>
+		</div>
 		</div>
 	</div>
 	<br style="clear: both;"/>
