@@ -19,7 +19,7 @@
 
 	<ul style="width: 100%; margin: 0; padding: 0; list-style: none;">
 		<li *ngFor="let item of items" style="height: 4em; overflow: hidden;">
-			<a [href]="item.link | amazonLinkTagger" target="_blank" rel="noopener" style="text-decoration: none; color: #333;" (click)="onItemClicked($event)">
+			<a [href]="wishlistUrl | amazonLinkTagger" target="_blank" rel="noopener" style="text-decoration: none; color: #333;" (click)="onItemClicked($event)">
 				<div style="background-color: #292931; color: white; width: 100%; border-radius: 1em; padding: 0.5em;">
 					<div style="width: 32px; float: left;">
 						<img [src]="item.image" alt style="width: 32px; height: 32px; border-radius: 100%; max-width: 32px;"/>
