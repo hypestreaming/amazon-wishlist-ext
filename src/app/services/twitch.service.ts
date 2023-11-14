@@ -1,51 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 import {extension} from '../../environments/extension';
-import {Observer} from 'rxjs/internal/types';
-import {Observable} from 'rxjs/internal/Observable';
-
-interface TwitchStream {
-	data: [{
-		id: string;
-		user_id: string;
-		game_id: string;
-		type: string; // live
-		title: string;
-		viewer_count: number;
-		language: string;
-		thumbnail_url: string;
-	}];
-}
-
-interface TwitchInstalledExtension {
-	extension: {
-		id: string;
-		anchor: string; // panel
-		description: string;
-		version: string;
-	};
-
-	installation_status: any;
-}
-
-interface TwitchUser {
-	_id: string;
-	type: string;
-	name: string; // cannot be changed
-	display_name: string; // displayable name on screen
-	logo: string; // avatar
-	created_at: string;
-	updated_at: string;
-}
+import {Observable, Observer} from 'rxjs';
 
 interface GetUsersResponse {
-	users: Array<TwitchUser>;
-}
-
-interface TwitchChannelExtensions {
-	issued_at: string;
-	tokens: any;
-	installed_extensions: TwitchInstalledExtension[];
+	data: [{
+		id: string;
+		type: string;
+		login: string; // cannot be changed
+		display_name: string; // displayable name on screen
+		description: string;
+		profile_image_url: string;
+		created_at: string;
+		updated_at: string;
+	}];
 }
 
 @Injectable()
@@ -54,19 +23,18 @@ export class TwitchService {
 	constructor(private http: HttpClient) {
 	}
 
-	getUser(userId: string): Observable<TwitchUser> {
-		return new Observable<TwitchUser>((observer: Observer<TwitchUser>) => {
+	getUser(token: string, user_id: string): Observable<GetUsersResponse> {
+		return new Observable<GetUsersResponse>((observer) => {
 
 			const httpOptions = {
-				'headers': new HttpHeaders({
-					'Accept': 'application/vnd.twitchtv.v5+json',
+				headers: new HttpHeaders({
+					'Authorization': 'Extension ' + token,
 					'Client-ID': extension.extensionClientId,
 				})
 			};
-
-			const url = 'https://api.twitch.tv/kraken/users?id=' + userId;
+			const url = 'https://api.twitch.tv/helix/users?id=' + user_id;
 			this.http.get<GetUsersResponse>(url, httpOptions).subscribe((response) => {
-				observer.next(response.users[0]);
+				observer.next(response);
 			});
 		});
 	}

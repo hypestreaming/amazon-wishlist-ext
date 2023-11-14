@@ -150,18 +150,19 @@ export class ConfigExtensionComponent implements OnInit {
 		this.auth = auth;
 		this.logger.log('onAuthorized: ' + JSON.stringify(auth));
 
-		this.twitch.getUser(this.auth.channelId).subscribe((twitchUser) => {
-			this.logger.log('Resolved authorized user: ' + twitchUser.name);
-			this.configuration.username = twitchUser.name;
+		this.twitch.getUser((auth as any).helixToken, this.auth.channelId).subscribe((response) => {
+			const twitchUser = response.data[0];
+			this.logger.log('Resolved authorized user: ' + twitchUser.login);
+			this.configuration.username = twitchUser.login;
 
 			if (this.configuration.title === null) {
-				this.title = twitchUser.name + '\'s Wishlist';
+				this.title = twitchUser.login + '\'s Wishlist';
 				this.configuration.title = this.title;
 			}
 
-			this.logger.log('Resolved channel logo: ' + twitchUser.logo);
-			this.userImage = twitchUser.logo;
-			this.configuration.user_logo = twitchUser.logo;
+			this.logger.log('Resolved channel logo: ' + twitchUser.profile_image_url);
+			this.userImage = twitchUser.profile_image_url;
+			this.configuration.user_logo = twitchUser.profile_image_url;
 		});
 	}
 
