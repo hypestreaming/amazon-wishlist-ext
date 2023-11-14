@@ -76,6 +76,7 @@ export class ConfigExtensionComponent implements OnInit {
 
 	onFetchSuccessful(wishlistUrl: string, data: FetchResponse) {
 
+		this.items = data.items;
 		this.configuration.items = data.items;
 		this.configuration.title = this.title;
 		this.configuration.wishlist_url = this.wishlistUrl;
