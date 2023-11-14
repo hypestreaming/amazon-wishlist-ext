@@ -47,6 +47,9 @@ li.item:hover {
 	margin-bottom: 0.75em;
 	font-size: 20px;
 	line-height: 24px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .theme-title a, .theme-title a:hover, .theme-title a:visited {
